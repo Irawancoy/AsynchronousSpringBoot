@@ -7,33 +7,33 @@ import java.util.concurrent.TimeUnit;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
-import com.example.TalentEvaluation.model.AsynchronusModel;
+import com.example.TalentEvaluation.model.AsynchronousModel;
 
 @Service
-public class AsynchronusServices {
+public class AsynchronousServices {
 
-    private Map<Integer, AsynchronusModel> taskStatus = new HashMap<>();
+    private Map<Integer, AsynchronousModel> taskStatus = new HashMap<>();
 
     @Async
     public void executeAsynchronously(int id) {
         // Menambahkan status "Processing"
-        taskStatus.put(id, new AsynchronusModel(id, "Processing", "Request is under process"));
+        taskStatus.put(id, new AsynchronousModel(id, "Processing", "Request is under process"));
 
         try {
            // Menunggu selama 5 detik 
             //Saya buat 5 detik supaya testnya tidak terlalu lama
             TimeUnit.SECONDS.sleep(5); 
-            taskStatus.put(id, new AsynchronusModel(id, "Completed", "Request is completed"));
+            taskStatus.put(id, new AsynchronousModel(id, "Completed", "Request is completed"));
         } catch (InterruptedException e) {
             e.printStackTrace();
             // Memperbarui status menjadi "Failed" jika terjadi kesalahan
-            taskStatus.put(id, new AsynchronusModel(id, "Failed", "Request is failed"));
+            taskStatus.put(id, new AsynchronousModel(id, "Failed", "Request is failed"));
         }
     }
 
-    public AsynchronusModel getStatus(int id) {
+    public AsynchronousModel getStatus(int id) {
        // Mengembalikan status berdasarkan ID
       // Jika ID tidak ditemukan, maka akan mengembalikan pesan "Task ID does not exist"
-        return taskStatus.getOrDefault(id, new AsynchronusModel(id, "Not Found", "Task ID does not exist"));
+        return taskStatus.getOrDefault(id, new AsynchronousModel(id, "Not Found", "Task ID does not exist"));
     }
 }

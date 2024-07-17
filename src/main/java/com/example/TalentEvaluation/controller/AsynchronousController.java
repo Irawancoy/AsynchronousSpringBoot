@@ -7,31 +7,30 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.TalentEvaluation.model.AsynchronusModel;
-import com.example.TalentEvaluation.services.AsynchronusServices;
+import com.example.TalentEvaluation.model.AsynchronousModel;
+import com.example.TalentEvaluation.services.AsynchronousServices;
 
 @RestController
-@RequestMapping("/asynchronus")
-public class AsynchronusController {
+@RequestMapping("/asynchronous")
+public class AsynchronousController {
 
    @Autowired
-   private AsynchronusServices asynchronusServices;
+   private AsynchronousServices asynchronousServices;
 
-   //post mapping untuk memulai proses asinkron
+   // post mapping untuk memulai proses asinkron
    @PostMapping("/execute")
    public String executeAsynchronously(@RequestParam int id) {
-      // Memanggil method executeAsynchronously dari AsynchronusServices
-      asynchronusServices.executeAsynchronously(id);
+      // Memanggil method executeAsynchronously dari AsynchronousServices
+      asynchronousServices.executeAsynchronously(id);
       // Mengembalikan pesan "Request is under process"
       return "Request is under process";
    }
 
-   //get mapping untuk mendapatkan status
+   // get mapping untuk mendapatkan status
    @GetMapping("/status")
-   public AsynchronusModel getStatus(@RequestParam int id) {
-      // Memanggil method getStatus dari AsynchronusServices
-      return asynchronusServices.getStatus(id);
+   public AsynchronousModel getStatus(@RequestParam int id) {
+      // Memanggil method getStatus dari AsynchronousServices
+      return asynchronousServices.getStatus(id);
    }
-
 
 }

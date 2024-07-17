@@ -6,7 +6,7 @@ import lombok.*;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class AsynchronusModel {
+public class AsynchronousModel {
    // Menambahkan atribut id, status, dan message
    //membuat getter dan setter untuk semua atribut menggunakan lombok
    //membuat constructor kosong dan constructor dengan semua atribut menggunakan lombok
